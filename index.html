@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bank.FLR – DeFi</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bank.FLR – DeFi</title>
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.min.js"></script>
 <style>
 :root{
@@ -23,11 +23,15 @@ body{font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var
 @keyframes float{from{transform:translateY(0)}to{transform:translateY(-120vh)}}
 
 /* HEADER */
-header{position:fixed;top:0;left:0;width:100%;padding:24px 56px;display:flex;justify-content:space-between;align-items:center;background:rgba(2,6,23,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);z-index:10;}
-header h1{font-size:18px;font-weight:700}
-button{background:linear-gradient(135deg,var(--blue),var(--cyan));border:none;color:#020617;padding:14px 28px;border-radius:18px;font-weight:800;cursor:pointer;transition:.3s}
+header{
+  position:fixed;top:0;left:0;width:100%;padding:24px 56px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(2,6,23,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);z-index:10;
+}
+header h1{font-size:54px;font-weight:700;line-height:1;}
+button{background:linear-gradient(135deg,var(--blue),var(--cyan));border:none;color:#020617;padding:28px 56px;border-radius:18px;font-weight:800;cursor:pointer;transition:.3s;font-size:28px;}
 button:hover{box-shadow:0 0 28px var(--hover-glow)}
-.secondary{background:transparent;color:var(--text);border:1px solid var(--border);}
+.secondary{background:transparent;color:var(--text);border:1px solid var(--border);padding:28px 56px;font-size:28px;}
 
 /* HERO & CORE */
 .hero{min-height:100vh;display:flex;align-items:center;padding:180px 96px;}
@@ -35,152 +39,320 @@ button:hover{box-shadow:0 0 28px var(--hover-glow)}
 .eyebrow{color:#93c5fd;letter-spacing:.18em;font-size:12px;margin-bottom:26px;}
 .hero h2{font-size:78px;font-weight:900;line-height:1.01;margin-bottom:34px;}
 .hero p{font-size:22px;color:var(--muted);max-width:520px;margin-bottom:46px;}
-.actions{display:flex;gap:20px}
+.actions{display:flex;gap:20px;justify-content:center}
 
-/* CORE / ZEMĚKOULE */
+/* CORE */
 .core{position:relative;height:520px;cursor:pointer;}
 .center{position:absolute;inset:160px;border-radius:50%;background:radial-gradient(circle at top, #3b82f6, #020617 70%);box-shadow:0 0 200px rgba(59,130,246,.7);animation:pulse 6s ease-in-out infinite;cursor:pointer;}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 .node{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--cyan);box-shadow:0 0 26px rgba(34,211,238,.9);transform-origin:center;animation:orbitNode 12s linear infinite;transition:transform .3s, box-shadow .3s;}
 .node.a{top:50%;left:50%;animation-delay:0s;}.node.b{top:50%;left:50%;animation-delay:4s;}.node.c{top:50%;left:50%;animation-delay:8s;}
 .node:hover{transform:scale(1.5) rotate(0deg) translateX(180px);box-shadow:0 0 50px var(--hover-glow);}
-@keyframes orbitNode{0%{transform:rotate(0deg) translateX(180px) rotate(0deg);}100%{transform:rotate(360deg) translateX(180px) rotate(-360deg);}}
+@keyframes orbitNode{0%{transform:rotate(0deg) translateX(180px) rotate(0deg);}100%{transform:rotate(360deg) translateX(180px) rotate(-360deg);} }
 .flare-symbol{position:absolute;top:50%;left:50%;font-size:36px;font-weight:900;background:linear-gradient(45deg,#3b82f6,#22d3ee,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 10px #3b82f6,0 0 20px #22d3ee,0 0 30px #8b5cf6;white-space:nowrap;transform-origin:center;animation:orbitFlare 15s linear infinite,textPulse 3s ease-in-out infinite;cursor:pointer;}
-@keyframes orbitFlare{0%{transform:rotate(0deg) translateX(180px) rotate(0deg);}100%{transform:rotate(360deg) translateX(180px) rotate(-360deg);}}
-@keyframes textPulse{0%,100%{transform:scale(1) rotate(0deg) translateX(180px);}50%{transform:scale(1.08) rotate(0deg) translateX(180px);}}
+@keyframes orbitFlare{0%{transform:rotate(0deg) translateX(180px) rotate(0deg);}100%{transform:rotate(360deg) translateX(180px) rotate(-360deg);} }
+@keyframes textPulse{0%,100%{transform:scale(1) rotate(0deg) translateX(180px);}50%{transform:scale(1.08) rotate(0deg) translateX(180px);} }
 
-/* KARTY */
-section.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:60px;padding:0 56px;}
+/* CARDS */
+section.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:60px;margin-bottom:20px;padding:0 56px;}
 .card{background:var(--panel);padding:24px;border-radius:16px;transition:box-shadow .3s;}
 .card:hover{box-shadow:0 0 40px var(--hover-glow);}
 .card h2{margin-bottom:12px;font-size:20px;}
-.card p{margin-bottom:12px;font-size:14px;color:var(--muted);}
-input, select{padding:8px;border-radius:12px;border:1px solid var(--border);background:#0b1224;color:var(--text);width:100%;margin-bottom:12px;}
+.card p{margin-bottom:12px;font-size:14px;color:#ffffff;}
+input, select, textarea{padding:8px;border-radius:12px;border:1px solid var(--border);background:#0b1224;color:#ffffff;width:100%;margin-bottom:12px;}
 .card button{width:100%;padding:10px;font-weight:700;margin-top:6px;cursor:pointer;}
-
-@media(max-width:900px){.hero{padding:140px 28px}.hero-inner{grid-template-columns:1fr}.core{display:none}.hero h2{font-size:48px}}
+.global-actions{display:flex;justify-content:center;gap:20px;padding:40px 0;background:rgba(2,6,23,.8);border-top:1px solid var(--border);flex-wrap:wrap;}
+.global-actions button{flex:0 0 auto;width:auto;padding:18px 48px;font-size:24px;}
+.global-dashboard{display:flex;justify-content:space-around;flex-wrap:wrap;padding:40px 56px;background:rgba(0,0,0,.6);border-top:1px solid var(--border);}
+.global-dashboard div{background:var(--panel);padding:20px 40px;border-radius:16px;margin:10px;min-width:200px;text-align:center;}
+.global-dashboard div h3{font-size:20px;margin-bottom:10px;}
+.card table {width: 100%; border-collapse: collapse; margin-top: 12px;}
+.card table th, .card table td {border: 1px solid #3b82f6; padding: 8px 12px; text-align: left; color: #ffffff;}
+.card table th {background: rgba(59,130,246,0.2);}
+.card table tr:nth-child(even) td {background: rgba(255,255,255,0.05);}
+.card table td span.value {font-weight: 700; float: right;}
+footer{ text-align:center;padding:40px 20px;color:var(--muted); font-size:14px;background:rgba(2,6,23,.7);border-top:1px solid var(--border);}
+@media(max-width:900px){.hero{padding:140px 28px}.hero-inner{grid-template-columns:1fr}.core{display:none}.hero h2{font-size:48px}header h1{font-size:36px}section.cards{margin-bottom:60px;padding:0 28px;}}
+@media(max-width:500px){header h1{font-size:28px}section.cards{margin-bottom:40px;padding:0 16px;}.global-actions button{font-size:20px;padding:12px 28px;}.global-dashboard{flex-direction:column;padding:20px;}}
 </style>
 </head>
 <body>
-
 <div class="scene"><div class="glow"></div></div>
-
 <header>
 <h1>Bank.FLR – DeFi</h1>
 <button id="connectWallet">Connect Wallet</button>
 </header>
-
 <section class="hero">
 <div class="hero-inner">
-<div data-parallax="0.3">
-<div class="eyebrow">GLOBAL DECENTRALIZED BANK</div>
-<h2>Where Global Capital<br>Moves Without Borders</h2>
-<p>Institutional DeFi layer: secure vaults, instant liquidity, token swaps, and collaborative investments.</p>
-<div class="actions">
-<button class="secondary">Enter Bank</button>
-<button class="secondary">Learn More</button>
-</div>
-</div>
-
-<div class="core" data-parallax="0.15">
-<div class="center"></div>
-<div class="flare-symbol">BANK.FLR</div>
-<div class="node a"></div>
-<div class="node b"></div>
-<div class="node c"></div>
-</div>
+  <div data-parallax="0.3">
+    <div class="eyebrow">GLOBAL DECENTRALIZED BANK</div>
+    <h2>Where Global Capital<br>Moves Without Borders</h2>
+    <p>Institutional DeFi layer: secure vaults, instant liquidity, token swaps, and collaborative investments.</p>
+    <div class="actions">
+      <button class="secondary">Enter Bank</button>
+      <button class="secondary">Invest Now</button>
+    </div>
+    <div style="color:#22d3ee;font-weight:700;margin-top:10px;">Current FLR Price: <span id="priceFLR">1.00 USD</span></div>
+  </div>
+  <div class="core" data-parallax="0.15">
+    <div class="center"></div>
+    <div class="flare-symbol">BANK.FLR</div>
+    <div class="node a"></div>
+    <div class="node b"></div>
+    <div class="node c"></div>
+  </div>
 </div>
 </section>
 
 <section class="cards">
+<!-- VAULT CARD -->
 <div class="card">
-<h2>Vault – Spoření</h2>
-<p>Zhodnocujte FLR a SGB bezpečně.</p>
-<select id="vaultToken"><option value="FLR">FLR</option><option value="SGB">SGB</option></select>
-<input type="number" id="vaultAmount" placeholder="Kolik tokenů vložit">
-<button onclick="vault.deposit()">Vložit</button>
-<button onclick="vault.withdraw()">Vybrat</button>
-<p id="vaultStatus">Vklad: 0 | Očekávaný úrok: 0</p>
+  <h2>Vault – Savings</h2>
+  <p>Earn interest on FLR and SGB safely.</p>
+  <select id="vaultToken"><option value="FLR">FLR</option><option value="SGB">SGB</option></select>
+  <input type="number" id="vaultAmount" placeholder="Amount to deposit">
+  <button onclick="vault.deposit()">Deposit</button>
+  <button onclick="vault.withdraw()">Withdraw</button>
+  <table>
+    <thead><tr><th>Token</th><th>Deposit</th><th>Expected Interest</th></tr></thead>
+    <tbody>
+      <tr><td>FLR</td><td><span class="value" id="vaultFLR">0</span></td><td><span class="value" id="interestFLR">0</span></td></tr>
+      <tr><td>SGB</td><td><span class="value" id="vaultSGB">0</span></td><td><span class="value" id="interestSGB">0</span></td></tr>
+    </tbody>
+  </table>
 </div>
 
+<!-- LOAN CARD -->
 <div class="card">
-<h2>Loan – Půjčky</h2>
-<p>Půjčte si pod LTV 66 % s kolaterálem FLR/SGB.</p>
-<select id="loanToken"><option value="FLR">FLR</option><option value="SGB">SGB</option></select>
-<input type="number" id="collateralAmount" placeholder="Kolaterál">
-<input type="number" id="borrowAmount" placeholder="Kolik půjčit">
-<button onclick="loan.borrow()">Půjčit</button>
-<button onclick="loan.repay()">Splatit</button>
-<p id="loanStatus">Kolaterál: 0 | Dluh: 0 | LTV: 0%</p>
+  <h2>Loan – Borrow</h2>
+  <p>Borrow under 66% LTV using FLR/SGB collateral.</p>
+  <select id="loanToken"><option value="FLR">FLR</option><option value="SGB">SGB</option></select>
+  <input type="number" id="collateralAmount" placeholder="Collateral amount">
+  <input type="number" id="borrowAmount" placeholder="Amount to borrow">
+  <button onclick="loan.borrow()">Borrow</button>
+  <button onclick="loan.repay()">Repay</button>
+  <table>
+    <thead><tr><th>Collateral</th><th>Debt</th><th>LTV</th></tr></thead>
+    <tbody>
+      <tr><td><span class="value" id="loanCollateral">0</span></td><td><span class="value" id="loanDebt">0</span></td><td><span class="value" id="loanLTV">0%</span></td></tr>
+    </tbody>
+  </table>
 </div>
 
+<!-- DEX CARD -->
 <div class="card">
-<h2>DEX – Swap</h2>
-<p>Směňte FLR ↔ SGB rychle a bezpečně.</p>
-<select id="fromToken"><option value="FLR">FLR</option><option value="SGB">SGB</option></select>
-<select id="toToken"><option value="FLR">FLR</option><option value="SGB">SGB</option></select>
-<input type="number" id="swapAmount" placeholder="Množství k swapu">
-<button onclick="dex.swap()">Swap</button>
-<p id="swapStatus"></p>
+  <h2>DEX – Swap</h2>
+  <p>Swap FLR ↔ SGB quickly and safely.</p>
+  <select id="fromToken"><option value="FLR">FLR</option><option value="SGB">SGB</option></select>
+  <select id="toToken"><option value="FLR">FLR</option><option value="SGB">SGB</option></select>
+  <input type="number" id="swapAmount" placeholder="Amount to swap">
+  <button onclick="dex.swap()">Swap</button>
+  <table>
+    <thead><tr><th>Token</th><th>Balance</th></tr></thead>
+    <tbody>
+      <tr><td>FLR</td><td><span class="value" id="swapFLR">100</span></td></tr>
+      <tr><td>SGB</td><td><span class="value" id="swapSGB">50</span></td></tr>
+    </tbody>
+  </table>
 </div>
 
+<!-- PORTFOLIO CARD -->
 <div class="card">
-<h2>Portfolio – Přehled</h2>
-<p>Sledujte stav vaultů, půjček a swapů.</p>
-<button onclick="portfolio.refresh()">Aktualizovat</button>
-<p id="portfolioStatus">Vaše finance budou zobrazeny zde.</p>
+  <h2>Portfolio Overview</h2>
+  <p>Track vaults, loans, and swaps.</p>
+  <button onclick="portfolio.refresh()">Refresh</button>
+  <table>
+    <thead><tr><th>Category</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td>Vaults</td><td><span class="value" id="portfolioVaults">FLR 0, SGB 0</span></td></tr>
+      <tr><td>Loans</td><td><span class="value" id="portfolioLoans">Debt 0, LTV 0%</span></td></tr>
+      <tr><td>Swaps</td><td><span class="value" id="portfolioSwaps">FLR 100, SGB 50</span></td></tr>
+    </tbody>
+  </table>
 </div>
 
+<!-- INVESTMENT CARD -->
 <div class="card">
-<h2>Investice – Navrhněte plán</h2>
-<p>Uživatelé navrhují investiční plán, investoři jej schvalují.</p>
-<input type="text" id="investmentTitle" placeholder="Název plánu">
-<textarea id="investmentDesc" placeholder="Popis investice" rows="3" style="width:100%;background:#0b1224;color:#e5e7eb;padding:8px;border-radius:12px;border:1px solid var(--border);margin-bottom:12px;"></textarea>
-<button onclick="investments.submitPlan()">Navrhnout plán</button>
-<button onclick="investments.approvePlan()">Schválit plán (Investor)</button>
-<p id="investmentStatus">Žádné návrhy</p>
+  <h2>Investment – Propose Plan</h2>
+  <p>Users propose investment plans, investors approve.</p>
+  <input type="text" id="investmentTitle" placeholder="Plan title">
+  <textarea id="investmentDesc" placeholder="Investment description" rows="3" style="width:100%;background:#0b1224;color:#ffffff;padding:8px;border-radius:12px;border:1px solid var(--border);margin-bottom:12px;"></textarea>
+  <button onclick="investments.submitPlan()">Propose Plan</button>
+  <button onclick="investments.approvePlan()">Approve Plan (Investor)</button>
+  <table>
+    <thead><tr><th>Title</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody id="investmentTableBody">
+      <tr><td colspan="3" style="text-align:center;color:#9ca3af;">No proposals yet</td></tr>
+    </tbody>
+  </table>
 </div>
 </section>
 
+<div class="global-actions">
+  <button>Loans & Credits</button>
+  <button>Mortgages</button>
+  <button>Savings</button>
+  <button>Investments</button>
+  <button>Insurance</button>
+</div>
+
+<div class="global-dashboard">
+  <div><h3>Total Pooled Assets</h3><span id="dashboardAssets">0</span></div>
+  <div><h3>Reserve Fund</h3><span id="dashboardReserve">0</span></div>
+  <div><h3>Bank Profit</h3><span id="dashboardProfit">0</span></div>
+</div>
+
+<footer>
+<div>bank.flr — Global Financial Infrastructure Protocol<br>Built on the Flare blockchain</div>
+<div>This website represents a decentralized software interface.</div>
+</footer>
+
 <script>
-// PARTICLES
-for(let i=0;i<40;i++){const p=document.createElement("div");p.className="particle";p.style.left=Math.random()*100+"%";p.style.top=100+Math.random()*100+"%";p.style.animationDuration=12+Math.random()*12+"s";document.body.appendChild(p);}
+// --- SIMULACE A LOGIKA DEMO ---
+// Demo data
+let vaultData = {FLR: 0, SGB:0};
+let loanData = {collateral:0, debt:0};
+let swapData = {FLR:100, SGB:50};
+let portfolioData = {vaults:'FLR 0, SGB 0', loans:'Debt 0, LTV 0%', swaps:'FLR 100, SGB 50'};
+let investmentPlans = [];
 
-// PARALLAX
-window.addEventListener("scroll",()=>{document.querySelectorAll("[data-parallax]").forEach(el=>{el.style.transform=`translateY(${window.scrollY*el.dataset.parallax}px)`;});});
+// Cena FLR
+let priceFLR = 1.0;
+function simulatePrice(){
+  priceFLR = Math.max(0.1, Math.min(2, priceFLR + (Math.random()-0.5)*0.1));
+  document.getElementById('priceFLR').innerText = priceFLR.toFixed(2)+' USD';
+}
 
-// WALLET + CONTRACTS
-let provider, signer, userAddress, vaultContract, loanContract, dexContract;
-const vaultAddress="0xVAULT_CONTRACT_ADDRESS"; // doplň adresu
-const loanAddress="0xLOAN_CONTRACT_ADDRESS";   // doplň adresu
-const dexAddress="0xDEX_CONTRACT_ADDRESS";     // doplň adresu
-const vaultABI=[], loanABI=[], dexABI=[];
+// Vault
+const vault = {
+  deposit:()=> {
+    let token = document.getElementById('vaultToken').value;
+    let amount = parseFloat(document.getElementById('vaultAmount').value)||0;
+    vaultData[token] += amount;
+    document.getElementById('vault'+token).innerText = vaultData[token].toFixed(2);
+    document.getElementById('interest'+token).innerText = (vaultData[token]*0.05).toFixed(2);
+    portfolioData.vaults = `FLR ${vaultData.FLR.toFixed(2)}, SGB ${vaultData.SGB.toFixed(2)}`;
+    document.getElementById('portfolioVaults').innerText = portfolioData.vaults;
+  },
+  withdraw:()=> {
+    let token = document.getElementById('vaultToken').value;
+    let amount = parseFloat(document.getElementById('vaultAmount').value)||0;
+    vaultData[token] = Math.max(0,vaultData[token]-amount);
+    document.getElementById('vault'+token).innerText = vaultData[token].toFixed(2);
+    document.getElementById('interest'+token).innerText = (vaultData[token]*0.05).toFixed(2);
+    portfolioData.vaults = `FLR ${vaultData.FLR.toFixed(2)}, SGB ${vaultData.SGB.toFixed(2)}`;
+    document.getElementById('portfolioVaults').innerText = portfolioData.vaults;
+  }
+};
 
+// Loan
+const loan = {
+  borrow:()=> {
+    let token = document.getElementById('loanToken').value;
+    let collateral = parseFloat(document.getElementById('collateralAmount').value)||0;
+    let borrow = parseFloat(document.getElementById('borrowAmount').value)||0;
+    loanData.collateral += collateral;
+    loanData.debt += borrow;
+    let ltv = loanData.collateral>0? (loanData.debt/loanData.collateral*100).toFixed(2)+'%':'0%';
+    document.getElementById('loanCollateral').innerText = loanData.collateral.toFixed(2);
+    document.getElementById('loanDebt').innerText = loanData.debt.toFixed(2);
+    document.getElementById('loanLTV').innerText = ltv;
+    portfolioData.loans = `Debt ${loanData.debt.toFixed(2)}, LTV ${ltv}`;
+    document.getElementById('portfolioLoans').innerText = portfolioData.loans;
+  },
+  repay:()=> {
+    let repay = parseFloat(document.getElementById('borrowAmount').value)||0;
+    loanData.debt = Math.max(0,loanData.debt-repay);
+    let ltv = loanData.collateral>0? (loanData.debt/loanData.collateral*100).toFixed(2)+'%':'0%';
+    document.getElementById('loanDebt').innerText = loanData.debt.toFixed(2);
+    document.getElementById('loanLTV').innerText = ltv;
+    portfolioData.loans = `Debt ${loanData.debt.toFixed(2)}, LTV ${ltv}`;
+    document.getElementById('portfolioLoans').innerText = portfolioData.loans;
+  }
+};
+
+// DEX
+const dex = {
+  swap:()=> {
+    let from = document.getElementById('fromToken').value;
+    let to = document.getElementById('toToken').value;
+    if(from===to) return;
+    let amount = parseFloat(document.getElementById('swapAmount').value)||0;
+    if(amount>swapData[from]) amount=swapData[from];
+    swapData[from]-=amount;
+    swapData[to]+=amount*0.99;
+    document.getElementById('swap'+from).innerText = swapData[from].toFixed(2);
+    document.getElementById('swap'+to).innerText = swapData[to].toFixed(2);
+    portfolioData.swaps = `FLR ${swapData.FLR.toFixed(2)}, SGB ${swapData.SGB.toFixed(2)}`;
+    document.getElementById('portfolioSwaps').innerText = portfolioData.swaps;
+  }
+};
+
+// Portfolio
+const portfolio = {
+  refresh:()=> {
+    document.getElementById('portfolioVaults').innerText = portfolioData.vaults;
+    document.getElementById('portfolioLoans').innerText = portfolioData.loans;
+    document.getElementById('portfolioSwaps').innerText = portfolioData.swaps;
+  }
+};
+
+// Investments
+const investments = {
+  submitPlan:()=> {
+    let title = document.getElementById('investmentTitle').value;
+    let desc = document.getElementById('investmentDesc').value;
+    if(!title) return;
+    investmentPlans.push({title, desc, status:'Pending'});
+    updateInvestmentTable();
+  },
+  approvePlan:()=> {
+    if(investmentPlans.length>0){
+      investmentPlans[0].status='Approved';
+      updateInvestmentTable();
+    }
+  }
+};
+
+function updateInvestmentTable(){
+  let tbody = document.getElementById('investmentTableBody');
+  tbody.innerHTML='';
+  if(investmentPlans.length===0){
+    tbody.innerHTML='<tr><td colspan="3" style="text-align:center;color:#9ca3af;">No proposals yet</td></tr>';
+    return;
+  }
+  investmentPlans.forEach(p=>{
+    let tr = document.createElement('tr');
+    tr.innerHTML=`<td>${p.title}</td><td>${p.desc}</td><td>${p.status}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// Wallet
+let provider, signer, userAddress;
 async function connectWallet(){
-  if(!window.ethereum)return alert("Nainstaluj MetaMask");
+  if(!window.ethereum) return alert("Install MetaMask");
   provider=new ethers.BrowserProvider(window.ethereum);
   await provider.send("eth_requestAccounts",[]);
   signer=await provider.getSigner();
   userAddress=await signer.getAddress();
   alert("Wallet connected: "+userAddress);
-  vaultContract=new ethers.Contract(vaultAddress,vaultABI,signer);
-  loanContract=new ethers.Contract(loanAddress,loanABI,signer);
-  dexContract=new ethers.Contract(dexAddress,dexABI,signer);
 }
+document.getElementById('connectWallet').onclick = connectWallet;
 
-// PLACEHOLDER LOGIC
-const vault={deposit:async()=>{},withdraw:async()=>{},updateVaultDisplay:async()=>{}};
-const loan={borrow:async()=>{},repay:async()=>{},updateLoanDisplay:async()=>{}};
-const dex={swap:async()=>{},updateDEXDisplay:async()=>{}};
-const portfolio={refresh:async()=>{}};
+// Automatická simulace cen
+setInterval(simulatePrice, 2000);
 
-const investments={
-  submitPlan:()=>{const title=document.getElementById("investmentTitle").value;const desc=document.getElementById("investmentDesc").value;document.getElementById("investmentStatus").innerText=`Navržený plán: ${title} – ${desc}`;},
-  approvePlan:()=>{document.getElementById("investmentStatus").innerText+="\nPlán schválen investorem";}
-};
-
-document.getElementById("connectWallet").onclick=connectWallet;
+// PARTICLES
+for(let i=0;i<40;i++){
+  const p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.top=100+Math.random()*100+"%";
+  p.style.animationDuration=12+Math.random()*12+"s";
+  document.body.appendChild(p);
+}
+window.addEventListener("scroll",()=>{document.querySelectorAll("[data-parallax]").forEach(el=>{el.style.transform=`translateY(${window.scrollY*el.dataset.parallax}px)`;});});
 </script>
-
 </body>
 </html>
